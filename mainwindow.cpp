@@ -539,7 +539,7 @@ void MainWindow::createKMQiPad( QTextStream *s, int index, bool turned )
     else if (moviesTable->item(index,0)->text()==tr("OU LR"))
         line += "iw:ih/2:0:0";
     else if (moviesTable->item(index,0)->text()==tr("OU RL"))
-        line += "iw:ih/2:ih/2:0";
+        line += "iw:ih/2:0:ih/2";
 
     int h, w;
     if( moviesTable->item(index,1)->text()==tr("16:9") ) {
@@ -559,7 +559,7 @@ void MainWindow::createKMQiPad( QTextStream *s, int index, bool turned )
     else if (moviesTable->item(index,0)->text()==tr("SBS LR"))
         line += "iw/2:ih:iw/2:0";
     else if (moviesTable->item(index,0)->text()==tr("OU LR"))
-        line += "iw:ih/2:ih/2:0";
+        line += "iw:ih/2:0:ih/2";
     else if (moviesTable->item(index,0)->text()==tr("OU RL"))
         line += "iw:ih/2:0:0";
     line += QString("',scale=%1:%2,").arg(w).arg(h);
@@ -625,10 +625,10 @@ void MainWindow::createKMQ1080p( QTextStream *s, int index)
         line += "iw/2:ih:iw/2:0";
     else if (moviesTable->item(index,0)->text()==tr("SBS RL"))
         line += "iw/2:ih:0:0";
-    else if (moviesTable->item(index,0)->text()==tr("OU RL"))
-        line += "iw:ih/2:0:0";
     else if (moviesTable->item(index,0)->text()==tr("OU LR"))
-        line += "iw:ih/2:ih/2:0";
+        line += "iw:ih/2:0:0";
+    else if (moviesTable->item(index,0)->text()==tr("OU RL"))
+        line += "iw:ih/2:0:ih/2";
 
     int h, w;
     if( moviesTable->item(index,1)->text()==tr("16:9") ) {
@@ -647,9 +647,9 @@ void MainWindow::createKMQ1080p( QTextStream *s, int index)
         line += "iw/2:ih:0:0";
     else if (moviesTable->item(index,0)->text()==tr("SBS RL"))
         line += "iw/2:ih:iw/2:0";
-    else if (moviesTable->item(index,0)->text()==tr("OU RL"))
-        line += "iw:ih/2:ih/2:0";
     else if (moviesTable->item(index,0)->text()==tr("OU LR"))
+        line += "iw:ih/2:0:ih/2";
+    else if (moviesTable->item(index,0)->text()==tr("OU RL"))
         line += "iw:ih/2:0:0";
     line += QString("',scale=%1:%2,").arg(w).arg(h);
     line += QString("pad=%1:%2:%3:%4:black[B];").arg(w).arg(1080).arg(0).arg(vgap);
@@ -719,10 +719,10 @@ void MainWindow::createKMQ1280( QTextStream *s, int index )
         line += "iw/2:ih:iw/2:0";
     else if (moviesTable->item(index,0)->text()==tr("SBS RL"))
         line += "iw/2:ih:0:0";
-    else if (moviesTable->item(index,0)->text()==tr("OU RL"))
-        line += "iw:ih/2:0:0";
     else if (moviesTable->item(index,0)->text()==tr("OU LR"))
-        line += "iw:ih/2:ih/2:0";
+        line += "iw:ih/2:0:0";
+    else if (moviesTable->item(index,0)->text()==tr("OU RL"))
+        line += "iw:ih/2:0:ih/2";
 
     line += QString("',scale=%1:%2[A];").arg(w).arg(h);
     line += QString("movie=%1").arg(oldName);
@@ -732,9 +732,9 @@ void MainWindow::createKMQ1280( QTextStream *s, int index )
         line += "iw/2:ih:0:0";
     else if (moviesTable->item(index,0)->text()==tr("SBS RL"))
         line += "iw/2:ih:iw/2:0";
-    else if (moviesTable->item(index,0)->text()==tr("OU RL"))
-        line += "iw:ih/2:ih/2:0";
     else if (moviesTable->item(index,0)->text()==tr("OU LR"))
+        line += "iw:ih/2:0:ih/2";
+    else if (moviesTable->item(index,0)->text()==tr("OU RL"))
         line += "iw:ih/2:0:0";
     line += QString("',scale=%1:%2,").arg(w).arg(h);
     line += QString("pad=%1:%2:0:0:black[B];").arg(w).arg(ht);
@@ -910,9 +910,9 @@ void MainWindow::createMy3D480p( QTextStream *s, int index)
     else if (moviesTable->item(index,0)->text()==tr("SBS LR"))
         line += "iw/2:ih:0:0";
     else if (moviesTable->item(index,0)->text()==tr("OU LR"))
-        line += "iw:ih/2:0:0";
+        line += "iw:ih/2:0:ih/2";
     else if (moviesTable->item(index,0)->text()==tr("OU RL"))
-        line += "iw:ih/2:ih/2:0";
+        line += "iw:ih/2:0:0";
 
     int h, w1 = 582;
     if( moviesTable->item(index,1)->text()==tr("16:9") )
@@ -930,9 +930,9 @@ void MainWindow::createMy3D480p( QTextStream *s, int index)
     else if (moviesTable->item(index,0)->text()==tr("SBS LR"))
         line += "iw/2:ih:iw/2:0";
     else if (moviesTable->item(index,0)->text()==tr("OU LR"))
-        line += "iw:ih/2:ih/2:0";
-    else if (moviesTable->item(index,0)->text()==tr("OU RL"))
         line += "iw:ih/2:0:0";
+    else if (moviesTable->item(index,0)->text()==tr("OU RL"))
+        line += "iw:ih/2:0:ih/2";
     line += QString("',scale=%1:%2,").arg(w1).arg(h);
     line += QString("pad=1280:480:10:%1:black[B];").arg(vgap);
     line += QString("[B][A]overlay=624:%1").arg(vgap);
@@ -1002,7 +1002,7 @@ void MainWindow::createMy3D960( QTextStream *s, int index)
     else if (moviesTable->item(index,0)->text()==tr("OU RL"))
         line += "iw:ih/2:0:0";
     else if (moviesTable->item(index,0)->text()==tr("OU LR"))
-        line += "iw:ih/2:ih/2:0";
+        line += "iw:ih/2:0:ih/2";
 
     line += QString("',scale=%1:%2[A];").arg(w1).arg(h);
     line += "movie=" + oldName;
@@ -1013,7 +1013,7 @@ void MainWindow::createMy3D960( QTextStream *s, int index)
     else if (moviesTable->item(index,0)->text()==tr("SBS RL"))
         line += "iw/2:ih:iw/2:0";
     else if (moviesTable->item(index,0)->text()==tr("OU RL"))
-        line += "iw:ih/2:ih/2:0";
+        line += "iw:ih/2:0:ih/2";
     else if (moviesTable->item(index,0)->text()==tr("OU LR"))
         line += "iw:ih/2:0:0";
     line += QString("',scale=%1:%2,").arg(w1).arg(h);
@@ -1074,10 +1074,10 @@ void MainWindow::createMy3D720p( QTextStream *s, int index)
         line += "iw/2:ih:iw/2:0";
     else if (moviesTable->item(index,0)->text()==tr("SBS LR"))
         line += "iw/2:ih:0:0";
+    else if (moviesTable->item(index,0)->text()==tr("OU RL"))
+        line += "iw:ih/2:0:ih/2";
     else if (moviesTable->item(index,0)->text()==tr("OU LR"))
         line += "iw:ih/2:0:0";
-    else if (moviesTable->item(index,0)->text()==tr("OU RL"))
-        line += "iw:ih/2:ih/2:0";
 
     int h, w1 = 874;
     if( moviesTable->item(index,1)->text()==tr("16:9") )
@@ -1095,10 +1095,10 @@ void MainWindow::createMy3D720p( QTextStream *s, int index)
         line += "iw/2:ih:0:0";
     else if (moviesTable->item(index,0)->text()==tr("SBS LR"))
         line += "iw/2:ih:iw/2:0";
-    else if (moviesTable->item(index,0)->text()==tr("OU LR"))
-        line += "iw:ih/2:ih/2:0";
     else if (moviesTable->item(index,0)->text()==tr("OU RL"))
         line += "iw:ih/2:0:0";
+    else if (moviesTable->item(index,0)->text()==tr("OU LR"))
+        line += "iw:ih/2:0:ih/2";
     line += QString("',scale=%1:%2[B];").arg(w1).arg(h);
     line += QString("[A][B]overlay=936:%1").arg(vgap);
     line += "\""; // end of vf
