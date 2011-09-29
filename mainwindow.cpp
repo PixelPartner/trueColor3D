@@ -140,7 +140,7 @@ MainWindow::MainWindow()
 void MainWindow::about()
 {
     QMessageBox::about( this, tr("About this program"),
-                        "trueColor3D, version 0.99\n"
+                        "trueColor3D, version 0.991\n"
                         "(C) 2010, 2011 by Thomas Kumlehn,\n"
                         "released under GPL 3.0\n"
                         "Find updates and news under\n"
@@ -715,9 +715,9 @@ void MainWindow::createKMQ1280( QTextStream *s, int index )
     line += QString(" -b 8500K -aspect %1:%2 -vf \"[in]").arg(ht).arg(w);
     line += "select=1,";    //line += "select='gte(t," + startSec + ")*lte(t," + endSec + ")',";
     line += "crop='";
-    if(moviesTable->item(index,0)->text()==tr("SBS LR"))
+    if(moviesTable->item(index,0)->text()==tr("SBS RL"))
         line += "iw/2:ih:iw/2:0";
-    else if (moviesTable->item(index,0)->text()==tr("SBS RL"))
+    else if (moviesTable->item(index,0)->text()==tr("SBS LR"))
         line += "iw/2:ih:0:0";
     else if (moviesTable->item(index,0)->text()==tr("OU LR"))
         line += "iw:ih/2:0:0";
@@ -728,9 +728,9 @@ void MainWindow::createKMQ1280( QTextStream *s, int index )
     line += QString("movie=%1").arg(oldName);
     line += ",select=1";    //line += ",select='gte(t," + startSec + ")*lte(t," + endSec + ")'";
     line += ",crop='";
-    if(moviesTable->item(index,0)->text()==tr("SBS LR"))
+    if(moviesTable->item(index,0)->text()==tr("SBS RL"))
         line += "iw/2:ih:0:0";
-    else if (moviesTable->item(index,0)->text()==tr("SBS RL"))
+    else if (moviesTable->item(index,0)->text()==tr("SBS LR"))
         line += "iw/2:ih:iw/2:0";
     else if (moviesTable->item(index,0)->text()==tr("OU LR"))
         line += "iw:ih/2:0:ih/2";
