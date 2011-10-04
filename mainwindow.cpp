@@ -140,7 +140,7 @@ MainWindow::MainWindow()
 void MainWindow::about()
 {
     QMessageBox::about( this, tr("About this program"),
-                        "trueColor3D, version 0.991\n"
+                        "trueColor3D, version 0.99\n"
                         "(C) 2010, 2011 by Thomas Kumlehn,\n"
                         "released under GPL 3.0\n"
                         "Find updates and news under\n"
@@ -296,9 +296,9 @@ void MainWindow::create3dtv( QTextStream *s, int index )
     batFile.open(QIODevice::WriteOnly);
     QTextStream batStream(&batFile);
     QString line;
-    line = "ffmpeg -i \""+avsName+"\" -b 8500K -y";
+    line = QString("ffmpeg -i \"")+avsName+QString("\" -b 8500K -y");
     if(fps != tr("keep"))
-        line += " -r " << fps;
+        line += QString(" -r ") + fps;
     line += " \""+mp4+"\"\r\n";
     batStream << line;
     *s << line;
@@ -367,10 +367,10 @@ void MainWindow::create3df33d( QTextStream *s, int index )
     batFile.open(QIODevice::WriteOnly);
     QTextStream batStream(&batFile);
     QString line;
-    line = "ffmpeg -i \""+avsName+"\" -b 8500K -y";
+    line = QString("ffmpeg -i \"")+avsName+QString("\" -b 8500K -y");
     if(fps != tr("keep"))
-        line += " -r " << fps;
-    line += " \""+mp4+"\"\r\n";
+        line += QString(" -r ") + fps;
+    line += QString(" \"")+mp4+QString("\"\r\n");
     batStream << line;
     *s << line;
     batFile.close();
@@ -491,7 +491,7 @@ Subtitle("http://openKMQ.blogspot.com", 384, 760, 0, 0, "Arial", 50, $FFFFFF, 0,
     QString line;
     line = "ffmpeg -i \""+avsName+"\" -b 8500K -y";
     if(fps != tr("keep"))
-        line += " -r " << fps;
+        line += " -r " + fps;
     line += " \""+mp4+"\"\r\n";
     batStream << line;
     *s << line;
@@ -585,7 +585,7 @@ void MainWindow::createKMQiPad( QTextStream *s, int index, bool turned )
     QByteArray ba = batName.toLocal8Bit();
     const char *c_batName = ba.data();
 #ifdef Q_WS_WIN
-    _chmod(c_batName, _S_I_READ | _S_I_READ | _S_I_EXECUTE );
+    _chmod(c_batName, _S_IWRITE | _S_IREAD | _S_IEXEC );
 #else
     chmod(c_batName, 0755);
 #endif
@@ -672,7 +672,7 @@ void MainWindow::createKMQ1080p( QTextStream *s, int index)
     QByteArray ba = batName.toLocal8Bit();
     const char *c_batName = ba.data();
 #ifdef Q_WS_WIN
-    _chmod(c_batName, _S_I_READ | _S_I_READ | _S_I_EXECUTE );
+    _chmod(c_batName, _S_IWRITE | _S_IREAD | _S_IEXEC );
 #else
     chmod(c_batName, 0755);
 #endif
@@ -715,9 +715,9 @@ void MainWindow::createKMQ1280( QTextStream *s, int index )
     line += QString(" -b 8500K -aspect %1:%2 -vf \"[in]").arg(ht).arg(w);
     line += "select=1,";    //line += "select='gte(t," + startSec + ")*lte(t," + endSec + ")',";
     line += "crop='";
-    if(moviesTable->item(index,0)->text()==tr("SBS RL"))
+    if(moviesTable->item(index,0)->text()==tr("SBS LR"))
         line += "iw/2:ih:iw/2:0";
-    else if (moviesTable->item(index,0)->text()==tr("SBS LR"))
+    else if (moviesTable->item(index,0)->text()==tr("SBS RL"))
         line += "iw/2:ih:0:0";
     else if (moviesTable->item(index,0)->text()==tr("OU LR"))
         line += "iw:ih/2:0:0";
@@ -728,9 +728,9 @@ void MainWindow::createKMQ1280( QTextStream *s, int index )
     line += QString("movie=%1").arg(oldName);
     line += ",select=1";    //line += ",select='gte(t," + startSec + ")*lte(t," + endSec + ")'";
     line += ",crop='";
-    if(moviesTable->item(index,0)->text()==tr("SBS RL"))
+    if(moviesTable->item(index,0)->text()==tr("SBS LR"))
         line += "iw/2:ih:0:0";
-    else if (moviesTable->item(index,0)->text()==tr("SBS LR"))
+    else if (moviesTable->item(index,0)->text()==tr("SBS RL"))
         line += "iw/2:ih:iw/2:0";
     else if (moviesTable->item(index,0)->text()==tr("OU LR"))
         line += "iw:ih/2:0:ih/2";
@@ -757,7 +757,7 @@ void MainWindow::createKMQ1280( QTextStream *s, int index )
     QByteArray ba = batName.toLocal8Bit();
     const char *c_batName = ba.data();
 #ifdef Q_WS_WIN
-    _chmod(c_batName, _S_I_READ | _S_I_READ | _S_I_EXECUTE );
+    _chmod(c_batName, _S_IWRITE | _S_IREAD | _S_IEXEC );
 #else
     chmod(c_batName, 0755);
 #endif
@@ -868,7 +868,7 @@ void MainWindow::createMy3D960avs( QTextStream *s, int index)
     QString line;
     line = "ffmpeg -i \""+avsName+"\" -b 4500K -y";
     if(fps != tr("keep"))
-        line += " -r " << fps;
+        line += " -r " + fps;
     line += " \""+mp4+"\"\r\n";
     batStream << line;
     *s << line;
@@ -954,7 +954,7 @@ void MainWindow::createMy3D480p( QTextStream *s, int index)
     QByteArray ba = batName.toLocal8Bit();
     const char *c_batName = ba.data();
 #ifdef Q_WS_WIN
-    _chmod(c_batName, _S_I_READ | _S_I_READ | _S_I_EXECUTE );
+    _chmod(c_batName, _S_IWRITE | _S_IREAD | _S_IEXEC );
 #else
     chmod(c_batName, 0755);
 #endif
@@ -1037,7 +1037,7 @@ void MainWindow::createMy3D960( QTextStream *s, int index)
     QByteArray ba = batName.toLocal8Bit();
     const char *c_batName = ba.data();
 #ifdef Q_WS_WIN
-    _chmod(c_batName, _S_I_READ | _S_I_READ | _S_I_EXECUTE );
+    _chmod(c_batName, _S_IWRITE | _S_IREAD | _S_IEXEC );
 #else
     chmod(c_batName, 0755);
 #endif
@@ -1119,7 +1119,7 @@ void MainWindow::createMy3D720p( QTextStream *s, int index)
     QByteArray ba = batName.toLocal8Bit();
     const char *c_batName = ba.data();
 #ifdef Q_WS_WIN
-    _chmod(c_batName, _S_I_READ | _S_I_READ | _S_I_EXECUTE );
+    _chmod(c_batName, _S_IWRITE | _S_IREAD | _S_IEXEC );
 #else
     chmod(c_batName, 0755);
 #endif
@@ -1230,7 +1230,7 @@ void MainWindow::createMy3D1280( QTextStream *s, int index)
     QString line;
     line = "ffmpeg -i \""+avsName+"\" -b 4500K -y";
     if(fps != tr("keep"))
-        line += " -r " << fps;
+        line += " -r " + fps;
     line += " \""+mp4+"\"\r\n";
     batStream << line;
     *s << line;
@@ -1392,7 +1392,7 @@ void MainWindow::createGRilli( QTextStream *s, int index, int w, int h )
     QString line;
     line = "ffmpeg -i \""+avsName+"\" -b 4500K -y";
     if(fps != tr("keep"))
-        line += " -r " << fps;
+        line += " -r " + fps;
     line += " \""+mp4+"\"\r\n";
     batStream << line;
     *s << line;
@@ -1518,7 +1518,7 @@ void MainWindow::createXPol( QTextStream *s, int index, int w, int h )
     QString line;
     line = "ffmpeg -i \""+avsName+"\" -b 8500K -y";
     if(fps != tr("keep"))
-        line += " -r " << fps;
+        line += " -r " + fps;
     line += " \""+mp4+"\"\r\n";
     batStream << line;
     *s << line;
