@@ -8,7 +8,21 @@ Find more about various options on http://openKMQ.blogspot.com, http://openMy3D.
 
 ## Framework and other dependencies
 To make and improve this code you need the Nokia founded framework Qt and QtCreator (http://qt.nokia.com/).
-I tested it on Windows Vista 32bit as well as on OSX 10.6(32)/10.7(64).
+I tested it on Windows Vista 32bit, Windows 7 64bit as well as on OSX 10.6(32)/10.7(64).
 To run the resulting shell/Batch scripts, you will also have ffmpeg installed (http://ffmpeg.org).
+
+If you want to run trueColor3D and ffmpeg with the Windows-only AviSynth extension you need extra install.
+
+For both 32 and 64 bit download and install this:
+http://sourceforge.net/projects/avisynth2/files/AviSynth%202.5/AviSynth%202.5.8/Avisynth_258.exe/download
+
+For a 64bit system, please download the 64bit version from here
+http://avisynth64.googlecode.com/files/avisynth64_4-16-10.rar
+and then install 32bit first (for PATH and folders) and follow the readme of the above RAR to pimp your system to 64bit.
+
+64bit MaskTools DLL: http://www.mediafire.com/?jqyziyme1zd
+
+You can download ffmpeg for Windows from here:
+http://ffmpeg.zeranoe.com/builds/
 
 
