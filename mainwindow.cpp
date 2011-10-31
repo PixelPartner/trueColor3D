@@ -50,7 +50,7 @@ MainWindow::MainWindow()
     checkGRilliPad = new QCheckBox(tr("&GRilli3D lenticular film for iPad"));
     checkGRilliTouch = new QCheckBox(tr("GRilli3D lenticular film for iPhone/iPodTouch Gen&3"));
     checkFeed = new QCheckBox(tr("&Video for 3Df33d.tv"));
-    //checkMy3D960avs = new QCheckBox(tr("TOYin3D and Haspro My3D (960px)"));
+    checkMy3D960avs = new QCheckBox(tr("TOYin3D and Haspro My3D (960px)"));
     checkMy3D1280 = new QCheckBox(tr("TOYin3D and Haspro My3D (1280px)"));
     check3DTV = new QCheckBox(tr("&s-b-s frame compatible for 3DTV"));
     /// \todo add over/under TV
@@ -140,7 +140,7 @@ MainWindow::MainWindow()
 void MainWindow::about()
 {
     QMessageBox::about( this, tr("About this program"),
-                        "trueColor3D, version 0.99\n"
+                        "trueColor3D, version 0.99c\n"
                         "(C) 2010, 2011 by Thomas Kumlehn,\n"
                         "released under GPL 3.0\n"
                         "Find updates and news under\n"
@@ -497,7 +497,7 @@ Subtitle("http://openKMQ.blogspot.com", 384, 760, 0, 0, "Arial", 50, $FFFFFF, 0,
     *s << line;
     batStream << "ECHO If you want to transfer the movie to an iPad\r\n";
     batStream << "ECHO using the Camera Connection Kit, please manually\r\n";
-    batStream << "ECHO rename the movie file to an xxxxxxxx.mp4 name (exact 8 chars!)";
+    batStream << "ECHO rename the movie file to an XXXXXXXX.MP4 name (exact 8.3 capital chars!)\r\n";
     batStream << "PAUSE Press any Key\r\n";
     batFile.close();
 #endif
@@ -585,7 +585,7 @@ void MainWindow::createKMQiPad( QTextStream *s, int index, bool turned )
     QByteArray ba = batName.toLocal8Bit();
     const char *c_batName = ba.data();
 #ifdef Q_WS_WIN
-    _chmod(c_batName, _S_IREAD | _S_IWRITE | _S_IEXECUTE );
+    _chmod(c_batName, _S_IREAD | _S_IWRITE | _S_IEXEC );
 #else
     chmod(c_batName, 0755);
 #endif
@@ -672,7 +672,7 @@ void MainWindow::createKMQ1080p( QTextStream *s, int index)
     QByteArray ba = batName.toLocal8Bit();
     const char *c_batName = ba.data();
 #ifdef Q_WS_WIN
-    _chmod(c_batName, _S_IREAD | _S_IWRITE | _S_IEXECUTE );
+    _chmod(c_batName, _S_IREAD | _S_IWRITE | _S_IEXEC );
 #else
     chmod(c_batName, 0755);
 #endif
@@ -757,7 +757,7 @@ void MainWindow::createKMQ1280( QTextStream *s, int index )
     QByteArray ba = batName.toLocal8Bit();
     const char *c_batName = ba.data();
 #ifdef Q_WS_WIN
-    _chmod(c_batName, _S_IREAD | _S_IWRITE | _S_IEXECUTE );
+    _chmod(c_batName, _S_IREAD | _S_IWRITE | _S_IEXEC );
 #else
     chmod(c_batName, 0755);
 #endif
@@ -954,7 +954,7 @@ void MainWindow::createMy3D480p( QTextStream *s, int index)
     QByteArray ba = batName.toLocal8Bit();
     const char *c_batName = ba.data();
 #ifdef Q_WS_WIN
-    _chmod(c_batName, _S_IREAD | _S_IWRITE | _S_IEXECUTE );
+    _chmod(c_batName, _S_IREAD | _S_IWRITE | _S_IEXEC );
 #else
     chmod(c_batName, 0755);
 #endif
@@ -1037,7 +1037,7 @@ void MainWindow::createMy3D960( QTextStream *s, int index)
     QByteArray ba = batName.toLocal8Bit();
     const char *c_batName = ba.data();
 #ifdef Q_WS_WIN
-    _chmod(c_batName, _S_IREAD | _S_IWRITE | _S_IEXECUTE );
+    _chmod(c_batName, _S_IREAD | _S_IWRITE | _S_IEXEC );
 #else
     chmod(c_batName, 0755);
 #endif
@@ -1119,7 +1119,7 @@ void MainWindow::createMy3D720p( QTextStream *s, int index)
     QByteArray ba = batName.toLocal8Bit();
     const char *c_batName = ba.data();
 #ifdef Q_WS_WIN
-    _chmod(c_batName, _S_IREAD | _S_IWRITE | _S_IEXECUTE );
+    _chmod(c_batName, _S_IREAD | _S_IWRITE | _S_IEXEC );
 #else
     chmod(c_batName, 0755);
 #endif
@@ -1398,7 +1398,7 @@ void MainWindow::createGRilli( QTextStream *s, int index, int w, int h )
     *s << line;
     batStream << "ECHO If you want to transfer the movie to an iPad\r\n";
     batStream << "ECHO using the Camera Connection Kit, please manually\r\n";
-    batStream << "ECHO rename the movie file to an xxxxxxxx.mp4 name (exact 8 chars!)";
+    batStream << "ECHO rename the movie file to an XXXXXXXX.MP4 name (exact 8.3 capital chars!)\r\n";
     batStream << "PAUSE Press any Key\r\n";
     batFile.close();
 #endif
