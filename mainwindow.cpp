@@ -241,9 +241,9 @@ void MainWindow::updateMoviesTable(const QMimeData *mimeData)
 void MainWindow::create3dtv( QTextStream *s, int index )
 {
     QString fps = moviesTable->item(index,2)->text();
-    QString oldName = moviesTable->item(index,3)->text();
+    QString oldName = moviesTable->item(index,3)->text().replace(QString("\\"),QString("/"));
     QFileInfo movie(oldName);
-    QString newName = movie.absolutePath() + QDir::separator() + movie.baseName() + "_sbs";
+    QString newName = movie.absolutePath() + QString("/") + movie.baseName() + "_sbs";
 
     QString script(8000);
     script = "# This is processed on the fly by the DirectShow pluging AviSynth\r\n";
@@ -296,7 +296,7 @@ void MainWindow::create3dtv( QTextStream *s, int index )
     batFile.open(QIODevice::WriteOnly);
     QTextStream batStream(&batFile);
     QString line;
-    line = "ffmpeg -i \""+avsName+"\" -b 8500K -y";
+    line = "ffmpeg -i \""+avsName+"\" -b:v 8500K -y";
     if(fps != tr("keep"))
         line += " -r " + fps;
     line += " \""+mp4+"\"\r\n";
@@ -312,9 +312,9 @@ void MainWindow::create3dtv( QTextStream *s, int index )
 void MainWindow::create3df33d( QTextStream *s, int index )
 {
     QString fps = moviesTable->item(index,2)->text();
-    QString oldName = moviesTable->item(index,3)->text();
+    QString oldName = moviesTable->item(index,3)->text().replace(QString("\\"),QString("/"));
     QFileInfo movie(oldName);
-    QString newName = movie.absolutePath() + QDir::separator() + movie.baseName() + "_3df33d";
+    QString newName = movie.absolutePath() + QString("/") + movie.baseName() + "_3df33d";
 
     QString script(8000);
     script = "# This is processed on the fly by the DirectShow pluging AviSynth\r\n";
@@ -367,7 +367,7 @@ void MainWindow::create3df33d( QTextStream *s, int index )
     batFile.open(QIODevice::WriteOnly);
     QTextStream batStream(&batFile);
     QString line;
-    line = "ffmpeg -i \""+avsName+"\" -b 8500K -y";
+    line = "ffmpeg -i \""+avsName+"\" -b:v 8500K -y";
     if(fps != tr("keep"))
         line += " -r " + fps;
     line += " \""+mp4+"\"\r\n";
@@ -383,9 +383,9 @@ void MainWindow::create3df33d( QTextStream *s, int index )
 void MainWindow::createKmq( QTextStream *s, int index, bool turned )
 {
     QString fps = moviesTable->item(index,2)->text();
-    QString oldName = moviesTable->item(index,3)->text();
+    QString oldName = moviesTable->item(index,3)->text().replace(QString("\\"),QString("/"));
     QFileInfo movie(oldName);
-    QString newName = movie.absolutePath() + QDir::separator() + movie.baseName() + ((turned) ? "_Air3D" : "_iPad3D");
+    QString newName = movie.absolutePath() + QString("/") + movie.baseName() + ((turned) ? "_Air3D" : "_iPad3D");
 
     QString script(8000);
     script = "# This is processed on the fly by the DirectShow pluging AviSynth\r\n";
@@ -489,7 +489,7 @@ Subtitle("http://openKMQ.blogspot.com", 384, 760, 0, 0, "Arial", 50, $FFFFFF, 0,
     batFile.open(QIODevice::WriteOnly);
     QTextStream batStream(&batFile);
     QString line;
-    line = "ffmpeg -i \""+avsName+"\" -b 8500K -y";
+    line = "ffmpeg -i \""+avsName+"\" -b:v 8500K -y";
     if(fps != tr("keep"))
         line += " -r " + fps;
     line += " \""+mp4+"\"\r\n";
@@ -509,9 +509,9 @@ Subtitle("http://openKMQ.blogspot.com", 384, 760, 0, 0, "Arial", 50, $FFFFFF, 0,
 void MainWindow::createKMQiPad( QTextStream *s, int index, bool turned )
 {
     QString fps = moviesTable->item(index,2)->text();
-    QString oldName = moviesTable->item(index,3)->text();
+    QString oldName = moviesTable->item(index,3)->text().replace(QString("\\"),QString("/"));
     QFileInfo movie(oldName);
-    QString newName = movie.absolutePath() + QDir::separator() + movie.baseName() + "_KMQiPad" + ((turned) ? "L" : "P");
+    QString newName = movie.absolutePath() + QString("/") + movie.baseName() + "_KMQiPad" + ((turned) ? "L" : "P");
 
     // output conversion batch file
     QString mp4 = newName + ".mp4";
@@ -529,7 +529,7 @@ void MainWindow::createKMQiPad( QTextStream *s, int index, bool turned )
     line = "ffmpeg -y -i \"" + oldName + "\"";
     if(fps != tr("keep"))
         line += " -r " + fps.toAscii();
-    line += QString(" -b 8500K -aspect %1 -vf \"[in]").arg((turned) ? "4:3" : "3:4");
+    line += QString(" -b:v 8500K -aspect %1 -vf \"[in]").arg((turned) ? "4:3" : "3:4");
     line += "select=1,";    //line += "select='gte(t," + str(startSec) + ")*lte(t," + str(endSec) + ")',";
     line += "crop='";
     if(moviesTable->item(index,0)->text()==tr("SBS RL"))
@@ -595,9 +595,9 @@ void MainWindow::createKMQiPad( QTextStream *s, int index, bool turned )
 void MainWindow::createKMQ1080p( QTextStream *s, int index)
 {
     QString fps = moviesTable->item(index,2)->text();
-    QString oldName = moviesTable->item(index,3)->text();
+    QString oldName = moviesTable->item(index,3)->text().replace(QString("\\"),QString("/"));
     QFileInfo movie(oldName);
-    QString newName = movie.absolutePath() + QDir::separator() + movie.baseName() + "_KMQ1080p";
+    QString newName = movie.absolutePath() + QString("/") + movie.baseName() + "_KMQ1080p";
 
     // output conversion batch file
     QString mp4 = newName + ".mp4";
@@ -615,15 +615,15 @@ void MainWindow::createKMQ1080p( QTextStream *s, int index)
     line = "ffmpeg -y -i \"" + oldName + "\"";
     if(fps != tr("keep"))
         line += QString(" -r %1").arg(fps);
-    line += " -b 8500K -aspect 3:4 -vf \"[in]";
+    line += " -b:v 8500K -aspect 3:4 -vf \"[in]";
     /**/QString startSec = QString("20");
     /**/QString endSec = QString("30");
 
     line += "select=1,";    //line += "select='gte(t," + startSec + ")*lte(t," + endSec + ")',";
     line += "crop='";
-    if(moviesTable->item(index,0)->text()==tr("SBS LR"))
+    if(moviesTable->item(index,0)->text()==tr("SBS RL"))
         line += "iw/2:ih:iw/2:0";
-    else if (moviesTable->item(index,0)->text()==tr("SBS RL"))
+    else if (moviesTable->item(index,0)->text()==tr("SBS LR"))
         line += "iw/2:ih:0:0";
     else if (moviesTable->item(index,0)->text()==tr("OU LR"))
         line += "iw:ih/2:0:0";
@@ -643,9 +643,9 @@ void MainWindow::createKMQ1080p( QTextStream *s, int index)
     line += "movie=" + oldName;
     line += ",select=1";    //line += ",select='gte(t," + startSec + ")*lte(t," + endSec + ")'";
     line += ",crop='";
-    if(moviesTable->item(index,0)->text()==tr("SBS LR"))
+    if(moviesTable->item(index,0)->text()==tr("SBS RL"))
         line += "iw/2:ih:0:0";
-    else if (moviesTable->item(index,0)->text()==tr("SBS RL"))
+    else if (moviesTable->item(index,0)->text()==tr("SBS LR"))
         line += "iw/2:ih:iw/2:0";
     else if (moviesTable->item(index,0)->text()==tr("OU LR"))
         line += "iw:ih/2:0:ih/2";
@@ -682,9 +682,9 @@ void MainWindow::createKMQ1080p( QTextStream *s, int index)
 void MainWindow::createKMQ1280( QTextStream *s, int index )
 {
     QString fps = moviesTable->item(index,2)->text();
-    QString oldName = moviesTable->item(index,3)->text();
+    QString oldName = moviesTable->item(index,3)->text().replace(QString("\\"),QString("/"));
     QFileInfo movie(oldName);
-    QString newName = movie.absolutePath() + QDir::separator() + movie.baseName() + "_KMQ1280";
+    QString newName = movie.absolutePath() + QString("/") + movie.baseName() + "_KMQ1280";
 
     // output conversion batch file
     QString mp4 = newName + ".mp4";
@@ -712,7 +712,7 @@ void MainWindow::createKMQ1280( QTextStream *s, int index )
     line = QString("ffmpeg -y -i \"%1\"").arg(oldName);
     if(fps != tr("keep"))
         line += QString(" -r %1").arg(fps);
-    line += QString(" -b 8500K -aspect %1:%2 -vf \"[in]").arg(ht).arg(w);
+    line += QString(" -b:v 8500K -aspect %1:%2 -vf \"[in]").arg(ht).arg(w);
     line += "select=1,";    //line += "select='gte(t," + startSec + ")*lte(t," + endSec + ")',";
     line += "crop='";
     if(moviesTable->item(index,0)->text()==tr("SBS LR"))
@@ -767,9 +767,9 @@ void MainWindow::createKMQ1280( QTextStream *s, int index )
 void MainWindow::createMy3D960avs( QTextStream *s, int index)
 {
     QString fps = moviesTable->item(index,2)->text();
-    QString oldName = moviesTable->item(index,3)->text();
+    QString oldName = moviesTable->item(index,3)->text().replace(QString("\\"),QString("/"));
     QFileInfo movie(oldName);
-    QString newName = movie.absolutePath() + QDir::separator() + movie.baseName() + "_my3D960";
+    QString newName = movie.absolutePath() + QString("/") + movie.baseName() + "_my3D960";
 
     QString script(8000);
     script = "# This is processed on the fly by the DirectShow pluging AviSynth\r\n";
@@ -866,7 +866,7 @@ void MainWindow::createMy3D960avs( QTextStream *s, int index)
     batFile.open(QIODevice::WriteOnly);
     QTextStream batStream(&batFile);
     QString line;
-    line = "ffmpeg -i \""+avsName+"\" -b 4500K -y";
+    line = "ffmpeg -i \""+avsName+"\" -b:v 4500K -y";
     if(fps != tr("keep"))
         line += " -r " + fps;
     line += " \""+mp4+"\"\r\n";
@@ -882,9 +882,9 @@ void MainWindow::createMy3D960avs( QTextStream *s, int index)
 void MainWindow::createMy3D480p( QTextStream *s, int index)
 {
     QString fps = moviesTable->item(index,2)->text();
-    QString oldName = moviesTable->item(index,3)->text();
+    QString oldName = moviesTable->item(index,3)->text().replace(QString("\\"),QString("/"));
     QFileInfo movie(oldName);
-    QString newName = movie.absolutePath() + QDir::separator() + movie.baseName() + "_my3D480p";
+    QString newName = movie.absolutePath() + QString("/") + movie.baseName() + "_my3D480p";
 
     // output conversion batch file
     QString mp4 = newName + ".mp4";
@@ -902,7 +902,7 @@ void MainWindow::createMy3D480p( QTextStream *s, int index)
     line = QString("ffmpeg -y -i \"%1\"").arg(oldName);
     if(fps != tr("keep"))
         line += QString(" -r %1").arg(fps);
-    line += " -b 4500K -aspect 2.66667 -vf \"[in]";
+    line += " -b:v 4500K -aspect 2.66667 -vf \"[in]";
     line += "select=1,";    //line += "select='gte(t," + startSec + ")*lte(t," + endSec + ")',";
     line += "crop='";
     if(moviesTable->item(index,0)->text()==tr("SBS RL"))
@@ -964,9 +964,9 @@ void MainWindow::createMy3D480p( QTextStream *s, int index)
 void MainWindow::createMy3D960( QTextStream *s, int index)
 {
     QString fps = moviesTable->item(index,2)->text();
-    QString oldName = moviesTable->item(index,3)->text();
+    QString oldName = moviesTable->item(index,3)->text().replace(QString("\\"),QString("/"));
     QFileInfo movie(oldName);
-    QString newName = movie.absolutePath() + QDir::separator() + movie.baseName() + "_my3D960";
+    QString newName = movie.absolutePath() + QString("/") + movie.baseName() + "_my3D960";
 
     // output conversion batch file
     QString mp4 = newName + ".mp4";
@@ -992,7 +992,7 @@ void MainWindow::createMy3D960( QTextStream *s, int index)
     line = QString("ffmpeg -y -i \"%1\"").arg(oldName);
     if(fps != tr("keep"))
         line += QString(" -r %1").arg(fps);
-    line += QString(" -b 4500K -aspect 960:%1 -vf \"[in]").arg(h);
+    line += QString(" -b:v 4500K -aspect 960:%1 -vf \"[in]").arg(h);
     line += "select=1,";    //line += "select='gte(t," + startSec + ")*lte(t," + endSec + ")',";
     line += "crop='";
     if(moviesTable->item(index,0)->text()==tr("SBS LR"))
@@ -1047,9 +1047,9 @@ void MainWindow::createMy3D960( QTextStream *s, int index)
 void MainWindow::createMy3D720p( QTextStream *s, int index)
 {
     QString fps = moviesTable->item(index,2)->text();
-    QString oldName = moviesTable->item(index,3)->text();
+    QString oldName = moviesTable->item(index,3)->text().replace(QString("\\"),QString("/"));
     QFileInfo movie(oldName);
-    QString newName = movie.absolutePath() + QDir::separator() + movie.baseName() + "_my3D720p";
+    QString newName = movie.absolutePath() + QString("/") + movie.baseName() + "_my3D720p";
 
     // output conversion batch file
     QString mp4 = newName + ".mp4";
@@ -1067,7 +1067,7 @@ void MainWindow::createMy3D720p( QTextStream *s, int index)
     line = QString("ffmpeg -y -i \"%1\"").arg(oldName);
     if(fps != tr("keep"))
         line += QString(" -r %1").arg(fps);
-    line += " -b 8500K -aspect 2.66667 -vf \"[in]";
+    line += " -b:v 8500K -aspect 2.66667 -vf \"[in]";
     line += "select=1,";    //line += "select='gte(t," + startSec + ")*lte(t," + endSec + ")',";
     line += "crop='";
     if(moviesTable->item(index,0)->text()==tr("SBS RL"))
@@ -1129,9 +1129,9 @@ void MainWindow::createMy3D720p( QTextStream *s, int index)
 void MainWindow::createMy3D1280( QTextStream *s, int index)
 {
     QString fps = moviesTable->item(index,2)->text();
-    QString oldName = moviesTable->item(index,3)->text();
+    QString oldName = moviesTable->item(index,3)->text().replace(QString("\\"),QString("/"));
     QFileInfo movie(oldName);
-    QString newName = movie.absolutePath() + QDir::separator() + movie.baseName() + "_my3D1280";
+    QString newName = movie.absolutePath() + QString("/") + movie.baseName() + "_my3D1280";
 
     QString script(8000);
     script = "# This is processed on the fly by the DirectShow pluging AviSynth\r\n";
@@ -1228,7 +1228,7 @@ void MainWindow::createMy3D1280( QTextStream *s, int index)
     batFile.open(QIODevice::WriteOnly);
     QTextStream batStream(&batFile);
     QString line;
-    line = "ffmpeg -i \""+avsName+"\" -b 4500K -y";
+    line = "ffmpeg -i \""+avsName+"\" -b:v 4500K -y";
     if(fps != tr("keep"))
         line += " -r " + fps;
     line += " \""+mp4+"\"\r\n";
@@ -1244,14 +1244,14 @@ void MainWindow::createMy3D1280( QTextStream *s, int index)
 void MainWindow::createGRilli( QTextStream *s, int index, int w, int h )
 {
     QString fps = moviesTable->item(index,2)->text();
-    QString oldName = moviesTable->item(index,3)->text();
+    QString oldName = moviesTable->item(index,3)->text().replace(QString("\\"),QString("/"));
     QFileInfo movie(oldName);
     QString widthStr = QString::number(w);
     QString heightStr = QString::number(h);
     QString height2Str;
     QString border2Str = QString::number((h-(w*9/16))/2);
 
-    QString newName = movie.absolutePath() + QDir::separator() + movie.baseName() + "_GRilli" + widthStr;
+    QString newName = movie.absolutePath() + QString("/") + movie.baseName() + "_GRilli" + widthStr;
 
     QString script(8000);
     script = "# This is processed on the fly by the DirectShow pluging AviSynth\r\n";
@@ -1390,7 +1390,7 @@ void MainWindow::createGRilli( QTextStream *s, int index, int w, int h )
     batFile.open(QIODevice::WriteOnly);
     QTextStream batStream(&batFile);
     QString line;
-    line = "ffmpeg -i \""+avsName+"\" -b 4500K -y";
+    line = "ffmpeg -i \""+avsName+"\" -b:v 4500K -y";
     if(fps != tr("keep"))
         line += " -r " + fps;
     line += " \""+mp4+"\"\r\n";
@@ -1410,14 +1410,14 @@ void MainWindow::createGRilli( QTextStream *s, int index, int w, int h )
 void MainWindow::createXPol( QTextStream *s, int index, int w, int h )
 {
     QString fps = moviesTable->item(index,2)->text();
-    QString oldName = moviesTable->item(index,3)->text();
+    QString oldName = moviesTable->item(index,3)->text().replace(QString("\\"),QString("/"));
     QFileInfo movie(oldName);
     QString widthStr = QString::number(w);
     QString heightStr = QString::number(h);
     QString height2Str;
     QString border2Str = QString::number((h-(w*9/16))/2);
 
-    QString newName = movie.absolutePath() + QDir::separator() + movie.baseName() + "_xPol" + widthStr;
+    QString newName = movie.absolutePath() + QString("/") + movie.baseName() + "_xPol" + widthStr;
 
     QString script(8000);
     script = "# This is processed on the fly by the DirectShow pluging AviSynth\r\n";
@@ -1516,7 +1516,7 @@ void MainWindow::createXPol( QTextStream *s, int index, int w, int h )
     batFile.open(QIODevice::WriteOnly);
     QTextStream batStream(&batFile);
     QString line;
-    line = "ffmpeg -i \""+avsName+"\" -b 8500K -y";
+    line = "ffmpeg -i \""+avsName+"\" -b:v 8500K -y";
     if(fps != tr("keep"))
         line += " -r " + fps;
     line += " \""+mp4+"\"\r\n";
