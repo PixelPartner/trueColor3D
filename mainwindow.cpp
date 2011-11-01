@@ -551,7 +551,11 @@ void MainWindow::createKMQiPad( QTextStream *s, int index, bool turned )
     }
     int vgap = (512-h)/2;
     line += QString("',scale=%1:%2[A];").arg(w).arg(h);
+#ifdef Q_WS_WIN
+    line += "movie=" + oldName.right(oldName.length()-2); // chop off disk name C: or so until
+#else
     line += "movie=" + oldName;
+#endif
     line += ",select=1";    //line += ",select='gte(t," + str(startSec) + ")*lte(t," + str(endSec) + ")'";
     line += ",crop='";
     if(moviesTable->item(index,0)->text()==tr("SBS RL"))
@@ -640,7 +644,11 @@ void MainWindow::createKMQ1080p( QTextStream *s, int index)
     }
     int vgap = (540-h)/2;
     line += QString("',scale=%1:%2[A];").arg(w).arg(h);
+#ifdef Q_WS_WIN
+    line += "movie=" + oldName.right(oldName.length()-2); // chop off disk name C: or so until
+#else
     line += "movie=" + oldName;
+#endif
     line += ",select=1";    //line += ",select='gte(t," + startSec + ")*lte(t," + endSec + ")'";
     line += ",crop='";
     if(moviesTable->item(index,0)->text()==tr("SBS RL"))
@@ -922,7 +930,11 @@ void MainWindow::createMy3D480p( QTextStream *s, int index)
 
     int vgap = (480-h)/2;
     line += QString("',scale=%1:%2[A];").arg(w1).arg(h);
+#ifdef Q_WS_WIN
+    line += "movie=" + oldName.right(oldName.length()-2); // chop off disk name C: or so until
+#else
     line += "movie=" + oldName;
+#endif
     line += ",select=1";    //line += ",select='gte(t," + startSec + ")*lte(t," + endSec + ")'";
     line += ",crop='";
     if(moviesTable->item(index,0)->text()==tr("SBS RL"))
@@ -1005,7 +1017,11 @@ void MainWindow::createMy3D960( QTextStream *s, int index)
         line += "iw:ih/2:0:ih/2";
 
     line += QString("',scale=%1:%2[A];").arg(w1).arg(h);
+#ifdef Q_WS_WIN
+    line += "movie=" + oldName.right(oldName.length()-2); // chop off disk name C: or so until
+#else
     line += "movie=" + oldName;
+#endif
     line += ",select=1";    //line += ",select='gte(t," + startSec + ")*lte(t," + endSec + ")'";
     line += ",crop='";
     if(moviesTable->item(index,0)->text()==tr("SBS LR"))
@@ -1088,7 +1104,11 @@ void MainWindow::createMy3D720p( QTextStream *s, int index)
     int vgap = (720-h)/2;
     line += QString("',scale=%1:%2,").arg(w1).arg(h);
     line += QString("pad=1920:720:10:%1:black[A];").arg(vgap);
+#ifdef Q_WS_WIN
+    line += "movie=" + oldName.right(oldName.length()-2); // chop off disk name C: or so until
+#else
     line += "movie=" + oldName;
+#endif
     line += ",select=1";    //line += ",select='gte(t," + startSec + ")*lte(t," + endSec + ")'";
     line += ",crop='";
     if(moviesTable->item(index,0)->text()==tr("SBS RL"))
