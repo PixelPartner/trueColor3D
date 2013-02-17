@@ -4,7 +4,7 @@
 I made this project to help stereo videographers as well as mobile 3D consumers to convert so called frame compatible video clips (ie. for TV sets and on Youtube) to different video layouts that can be also viewed on mobile devices.
 With legacy 3D videos you need color distorting anaglyph glasses and a browser supporting FLASH or even an expensive, full blown NVidia 3DVision set.
 With the outputs of trueColor3D, you can watch 3D undistorted, in full color and on mobile and NON-3D-LCD devices. On iPad, iPhone, other tablets and smartphones, any Laptop and normal 2D-LCD screen.
-Find more about various options on http://openKMQ.blogspot.com, http://openMy3D.blogspot.com and http://openGRilli3D.blogspot.com 
+Find more about various options on http://pixelpartner.github.com and http://openMy3D.blogspot.com 
 
 ## Framework and other dependencies
 To make and improve this code you need the Nokia founded framework Qt and QtCreator (http://qt.nokia.com/).
@@ -26,3 +26,7 @@ You can download ffmpeg for Windows from here:
 http://ffmpeg.zeranoe.com/builds/
 
 
+# Binary downloads
++ You have to install the above mentioned tools first ...
++ [Windows 0.94](https://dl.dropbox.com/u/7623044/openKMQ/trueColor3D_0_94_WIN.zip)
++ [OSX 0.99](https://dl.dropbox.com/u/7623044/openKMQ/trueColor3D_0_99_OSX_bin.zip)
